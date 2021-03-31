@@ -1,5 +1,8 @@
 # Implementação de Grafo com Lista de Adjacências
 
+[![Build Status](https://travis-ci.com/samuel-cavalcanti/grafo_lista_adj_exercicio.svg?branch=main)](https://travis-ci.com/samuel-cavalcanti/grafo_lista_adj_exercicio)
+
+
 ## Notas do professor
 
 Aqui segue um  [arquivo .h](https://github.com/eduardolfalcao/edii/blob/master/src/grafos/grafolistaadjexercicio.h)

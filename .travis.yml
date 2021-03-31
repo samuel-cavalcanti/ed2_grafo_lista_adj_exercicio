@@ -9,7 +9,7 @@ env:
     - CXX_FLAGS="-Wall -pedantic -Werror -Wno-variadic-macros -Wno-long-long -Wno-shadow"
     # Misc
     - RUN_TESTS=true
-    - CODECOV_TOKEN="7521cbeb-6c12-42a9-90d5-bfe468e30ab8"
+    - CODECOV_TOKEN="98f55000-3adb-4054-b8fe-f39276a23588"
 
 matrix:
   include:
