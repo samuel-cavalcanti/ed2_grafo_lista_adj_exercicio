@@ -8,28 +8,18 @@
 
 #include <vector>
 #include <string>
+#include <deque>
 
 class GrafoListaAdj {
-private:
-    std::vector<std::string> vertices;
-
-    //first é o indice do vertice, second é o peso (caso o grafo seja ponderado)
-    std::vector<std::vector<std::pair<int, int>>> arestas;
-
-    /**
-    * A principio nao temos nenhuma ordenacao usando os rotulos.
-    * Portanto, usaremos busca linear.
-    **/
-    int obterIndiceVertice(std::string rotuloVertice);
-
-    /**
-    * O argumento indicesVerticesVisitados serve para controlar quais
-    * vertices já foram visitados.
-    * Lembrando que DFS é uma função recursiva.
-    **/
-    void dfs(std::string rotuloVOrigem, bool *indicesVerticesVisitados);
 
 public:
+
+    /**
+   * A principio nao temos nenhuma ordenacao usando os rotulos.
+   * Portanto, usaremos busca linear.
+   **/
+    int obterIndiceVertice(std::string rotuloVertice);
+
     /**
     * Lembrem-se:
     *       1) nao podemos inserir vertices com mesmo rotulo
@@ -93,6 +83,25 @@ public:
     std::vector<std::string> getVertices();
 
     std::vector<std::vector<std::pair<int, int>>> getArestas();
+
+private:
+    std::vector<std::string> vertices;
+
+    //first é o indice do vertice, second é o peso (caso o grafo seja ponderado)
+    std::vector<std::vector<std::pair<int, int>>> arestas;
+
+    /**
+    * O argumento indicesVerticesVisitados serve para controlar quais
+    * vertices já foram visitados.
+    * Lembrando que DFS é uma função recursiva.
+    **/
+    void dfs(int indiceVertice, std::vector<bool> &indicesVerticesVisitados, std::string *cor);
+
+    void dfs(int indiceVertice, std::vector<bool> &indicesVerticesVisitados);
+
+    bool filaContemIndice(std::deque<int> &fila, int& elemento);
+
+    void visitar(int &indice);
 };
 
 

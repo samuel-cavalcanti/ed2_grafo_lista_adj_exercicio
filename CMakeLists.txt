@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(grafo_lista_de_adjacencias)
+project(grafo_lista_de_adjacencias C CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 SET(CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage") #codecov
