@@ -1,7 +1,7 @@
 # Implementação de Grafo com Lista de Adjacências
 
 [![Build Status](https://travis-ci.com/samuel-cavalcanti/grafo_lista_adj_exercicio.svg?branch=main)](https://travis-ci.com/samuel-cavalcanti/grafo_lista_adj_exercicio)
-
+[![codecov](https://codecov.io/gh/samuel-cavalcanti/grafo_lista_adj_exercicio/branch/main/graph/badge.svg)](https://codecov.io/gh/samuel-cavalcanti/grafo_lista_adj_exercicio)
 
 ## Notas do professor
 
