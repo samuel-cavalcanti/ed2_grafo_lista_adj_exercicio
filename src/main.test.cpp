@@ -3,7 +3,8 @@
 //
 
 #include "gtest/gtest.h"
-#include "grafoListaAdj.test.h"
+#include "../tests/grafoListaAdj.test.h"
+#include "../tests/testMenorCaminho.test.h"
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

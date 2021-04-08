@@ -5,10 +5,19 @@
 #ifndef GRAFO_LISTA_DE_ADJACENCIAS_GRAFOLISTAADJEXERCICIO_H
 #define GRAFO_LISTA_DE_ADJACENCIAS_GRAFOLISTAADJEXERCICIO_H
 
+#define POS_INF 1000000000
+#define NEG_INF -1000000000
 
 #include <vector>
 #include <string>
 #include <deque>
+#include <list>
+
+typedef struct Aresta {
+    int indiceOrigem;
+    int indiceDestino;
+    int peso;
+} Aresta;
 
 class GrafoListaAdj {
 
@@ -18,7 +27,7 @@ public:
    * A principio nao temos nenhuma ordenacao usando os rotulos.
    * Portanto, usaremos busca linear.
    **/
-    int obterIndiceVertice(std::string rotuloVertice);
+    int obterIndiceVertice(const std::string& rotuloVertice);
 
     /**
     * Lembrem-se:
@@ -27,36 +36,36 @@ public:
     *          inserir um vetor para representar as conexões daquele
     *          vértice na lista de adjacências
     **/
-    void inserirVertice(std::string rotuloVertice);
+    void inserirVertice(const std::string& rotuloVertice);
 
     /**
     * Sempre que o grafo for não ponderado, adicionaremos o peso 1,
     * por conveniência.
     **/
-    void inserirArestaDirecionada(std::string rotuloVOrigem, std::string rotuloVDestino);
+    void inserirArestaDirecionada(const std::string& rotuloVOrigem,const std::string& rotuloVDestino);
 
-    void inserirArestaNaoDirecionada(std::string rotuloVOrigem, std::string rotuloVDestino);
+    void inserirArestaNaoDirecionada(const std::string& rotuloVOrigem, const std::string& rotuloVDestino);
 
-    void inserirArestaNaoDirecionada(std::string rotuloVOrigem, std::string rotuloVDestino, int peso);
+    void inserirArestaNaoDirecionada(const std::string& rotuloVOrigem, const std::string& rotuloVDestino, int peso);
 
     /**
     * Inserir uma aresta entre rotuloVOrigem e rotuloVDestino com o peso
     * especificado.
     **/
-    void inserirArestaDirecionada(std::string rotuloVOrigem, std::string rotuloVDestino, int peso);
+    void inserirArestaDirecionada(const std::string& rotuloVOrigem, const std::string& rotuloVDestino, int peso);
 
     /**
     * Verifica se vértice rotuloVOrigem e vértice rotuloVDestino são
     * conectados.
     **/
-    bool saoConectados(std::string rotuloVOrigem, std::string rotuloVDestino);
+    bool saoConectados(const std::string& rotuloVOrigem, const std::string& rotuloVDestino);
 
     /**
     * Verifica se há algum caminho entre vértice rotuloVOrigem e
     * vértice rotuloVDestino.
     * A melhor forma de fazer isto é reusando a função dfs.
     **/
-    bool haCaminho(std::string rotuloVOrigem, std::string rotuloVDestino);
+    bool haCaminho(const std::string& rotuloVOrigem, const std::string& rotuloVDestino);
 
     /**
     * Muda os rótulos do vértices dos diferentes componentes para
@@ -78,17 +87,52 @@ public:
     * Não é uma função recursiva.
     * É necessário utilizar a ED fila.
     **/
-    int *bfs(std::string rotuloVOrigem);
+    int *bfs(const std::string& rotuloVOrigem);
 
     std::vector<std::string> getVertices();
 
     std::vector<std::vector<std::pair<int, int>>> getArestas();
+
+    /**
+ * Usamos o BellmanFord para encontrar menor caminho
+ * em grafos com arestas com pesos negativos.
+ * O BellmanFord consegue detectar ciclos negativos
+ * e atribuir o valor NEG_INF (constante definida nesse arquivo)
+ * aos vértices que pertençam ao ciclo.
+ * POS_INF deve ser atribuído aos vértices inalcançáveis.
+ * O aspecto negativo é sua complexidade de tempo: O(V*E).
+ * Isto acontece pois, como possui arestas negativas, cada vértice
+ * do grafo precisa ser processado V vezes.
+ * Pseudo-código: https://github.com/eduardolfalcao/edii/blob/master/conteudos/Grafos.md#bellman-ford
+ **/
+    int *bellmanFord(const std::string& rotuloVOrigem);
+
+
+    bool relaxarArestasBellManFord(std::vector<int> *&distancias, std::vector<int> &predecessores);
+
+    /**
+    * Usamos o Dijkstra para encontrar menor caminho
+    * em grafos sem arestas com pesos negativos.
+    * O Dijkstra retorna respostas incorretas caso o grafo
+    * possua arestas negativas, e portanto não consegue
+    * detectar ciclos negativos. Este é o aspecto negativo.
+    * POS_INF deve ser atribuído aos vértices inalcançáveis.
+    * O aspecto positivo é sua complexidade de tempo: O(V+E).
+    * Isto acontece pois, como o grafo não possui arestas negativas,
+    * cada vértice do grafo precisa ser processado apenas 1 vez.
+    * Pseudo-código: https://github.com/eduardolfalcao/edii/blob/master/conteudos/Grafos.md#dijkstra
+    * Ilustração: https://docs.google.com/drawings/d/1NmkJPHpcg8uVcDZ24FQiYs3uHR5n-rdm1AZwD74WiMY/edit?usp=sharing
+    **/
+    int *dijkstra(const std::string& rotuloVOrigem);
 
 private:
     std::vector<std::string> vertices;
 
     //first é o indice do vertice, second é o peso (caso o grafo seja ponderado)
     std::vector<std::vector<std::pair<int, int>>> arestas;
+
+    // um versão de aresta muito melhor de bom
+    std::list<Aresta> listaArestas;
 
     /**
     * O argumento indicesVerticesVisitados serve para controlar quais
@@ -99,9 +143,8 @@ private:
 
     void dfs(int indiceVertice, std::vector<bool> &indicesVerticesVisitados);
 
-    bool filaContemIndice(std::deque<int> &fila, int& elemento);
+    bool filaContemIndice(std::deque<int> &fila, int &elemento);
 
-    void visitar(int &indice);
 };
 
 

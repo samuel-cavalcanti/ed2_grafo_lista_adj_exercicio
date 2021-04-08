@@ -1,5 +1,5 @@
 
-#include "grafolistaadjexercicio.h"
+#include "../src/grafo_lista_adj/grafolistaadjexercicio.h"
 #include "gtest/gtest.h"
 
 
@@ -16,6 +16,15 @@ protected:
 
     virtual void SetUp() {
         grafo = new GrafoListaAdj();
+    }
+    void inserirVertices(GrafoListaAdj *grafoNaoPonderado, int ini, int fim) {
+        for (int i = ini; i <= fim; i++) {
+            string rotulo;
+            std::stringstream sstm;
+            sstm << "v" << i;
+            rotulo = sstm.str();
+            grafoNaoPonderado->inserirVertice(rotulo);
+        }
     }
 
     GrafoListaAdj *grafo;
@@ -43,15 +52,7 @@ TEST_F(GrafoListaAdjTest, InsercaoVerticeRepetido) {
     EXPECT_EQ(grafo->getArestas().size(), 1);
 }
 
-void inserirVertices(GrafoListaAdj *grafoNaoPonderado, int ini, int fim) {
-    for (int i = ini; i <= fim; i++) {
-        string rotulo;
-        std::stringstream sstm;
-        sstm << "v" << i;
-        rotulo = sstm.str();
-        grafoNaoPonderado->inserirVertice(rotulo);
-    }
-}
+
 
 TEST_F(GrafoListaAdjTest, InsercaoArestaNaoDirecionadaNaoPonderada) {
     inserirVertices(grafo, 1, 9);
