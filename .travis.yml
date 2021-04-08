@@ -6,11 +6,10 @@ env:
     - LINUX_DIST=xenial
     - DEPS_DIR=${TRAVIS_BUILD_DIR}/deps
     # Global build options and C++ flags
-  
     - CXX_FLAGS="-Wall -pedantic -Werror -Wno-variadic-macros -Wno-long-long -Wno-shadow"
     # Misc
     - RUN_TESTS=true
-    - CODECOV_TOKEN="98f55000-3adb-4054-b8fe-f39276a23588"
+    - CODECOV_TOKEN="05071ba9-026e-4767-aa60-6df81d570126"
 
 matrix:
   include:
