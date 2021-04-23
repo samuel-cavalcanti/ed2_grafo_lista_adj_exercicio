@@ -1,6 +1,6 @@
 # Implementação de Grafo com Lista de Adjacências
 
-[![Build Status](https://www.travis-ci.com/samuel-cavalcanti/ed2_grafo_lista_adj_exercicio.svg?token=SXASsitGLsiExatedsqg&branch=main)](https://www.travis-ci.com/samuel-cavalcanti/ed2_grafo_lista_adj_exercicio)  
+[![Build Status](https://www.travis-ci.com/samuel-cavalcanti/ed2_grafo_lista_adj_exercicio.svg?token=SXASsitGLsiExatedsqg&branch=main)](https://www.travis-ci.com/samuel-cavalcanti/ed2_grafo_lista_adj_exercicio)
 [![codecov](https://codecov.io/gh/samuel-cavalcanti/ed2_grafo_lista_adj_exercicio/branch/main/graph/badge.svg)](https://codecov.io/gh/samuel-cavalcanti/ed2_grafo_lista_adj_exercicio)
 ## Notas do professor
 
